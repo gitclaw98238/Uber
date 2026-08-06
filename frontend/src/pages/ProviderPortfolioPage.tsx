@@ -32,7 +32,7 @@ const ProviderPortfolioPage = () => {
         <div className="image-grid">
           {portfolio.map((image) => (
             <div key={image} className="portfolio-tile">
-              <img src={image} alt="Portfolio work" className="portfolio-image" />
+              <img src={image.startsWith('http') || image.startsWith('/') ? image : ''} alt="Portfolio work" className="portfolio-image" />
               <button className="button ghost" type="button" onClick={() => setPortfolio((current) => current.filter((item) => item !== image))}>
                 Remove
               </button>
