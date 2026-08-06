@@ -23,8 +23,10 @@ const RegisterPage = () => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const nextUser = await register(form);
-    navigate(getDefaultRouteForRole(nextUser.role), { replace: true });
+    try {
+      const nextUser = await register(form);
+      if (nextUser) navigate(getDefaultRouteForRole(nextUser.role), { replace: true });
+    } catch (e) { /* error state handled by store */ }
   };
 
   return (

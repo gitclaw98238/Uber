@@ -16,8 +16,10 @@ const LoginPage = () => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const nextUser = await login(form);
-    navigate(getDefaultRouteForRole(nextUser.role), { replace: true });
+    try {
+      const nextUser = await login(form);
+      if (nextUser) navigate(getDefaultRouteForRole(nextUser.role), { replace: true });
+    } catch (e) { /* error state handled by store */ }
   };
 
   return (

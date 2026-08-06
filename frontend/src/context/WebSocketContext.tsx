@@ -29,7 +29,8 @@ export const WebSocketProvider = ({ children }: PropsWithChildren) => {
 
     const connect = () => {
       setStatus((current) => (current === 'connected' ? current : 'connecting'));
-      const socket = new WebSocket(`ws://localhost:3001?token=${encodeURIComponent(token)}`);
+      const wsBase = process.env.REACT_APP_WS_URL || 'ws://localhost:3001';
+      const socket = new WebSocket(`${wsBase}?token=${encodeURIComponent(token)}`);
       socketRef.current = socket;
 
       socket.onopen = () => {

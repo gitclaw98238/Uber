@@ -2,7 +2,7 @@ import axios from 'axios';
 import { clearAuthStorage, getStoredToken } from '../utils/storage';
 
 export const apiClient = axios.create({
-  baseURL: 'http://localhost:3001/api',
+  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:3001/api',
   headers: {
     'Content-Type': 'application/json',
   },

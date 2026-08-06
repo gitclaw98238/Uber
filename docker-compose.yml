@@ -8,7 +8,7 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=3001
-      - JWT_SECRET=${JWT_SECRET:-your-secret-key-change-in-production}
+      - JWT_SECRET=${JWT_SECRET:?JWT_SECRET environment variable must be set}
       - PLATFORM_FEE_PERCENT=15
     volumes:
       - backend_data:/app/data

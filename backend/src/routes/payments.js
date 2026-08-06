@@ -13,7 +13,7 @@ const router = express.Router();
 function getPlatformFeePercent() {
   const db = getDb();
   const setting = db.prepare('SELECT value FROM platform_settings WHERE key = ?').get('platform_fee_percent');
-  return Number(setting?.value || 0.15);
+  return setting?.value != null ? Number(setting.value) : 0.15;
 }
 
 router.post(
